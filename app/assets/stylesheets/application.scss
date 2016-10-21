@@ -1,5 +1,7 @@
 //= require jquery-ui/core
 //= require font-awesome
+//= require jquery.fileupload
+//= require jquery.fileupload-ui
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
@@ -12,4 +14,12 @@ body,
 
 .nowrap {
   white-space: nowrap;
+}
+
+.dropzone {
+  background-color: #efefef;
+  border: 2px solid silver;
+  display: block;
+  padding: 50px;
+  text-align: center;
 }

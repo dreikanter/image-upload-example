@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module ImageUploadExample
   class Application < Rails::Application
     config.autoload_paths += %w(app lib).map { |p| Rails.root.join p }
+    config.autoload_paths << 'app/uploaders'
 
     config.active_job.queue_adapter = :delayed_job
 
@@ -31,5 +32,7 @@ module ImageUploadExample
       params = event.payload[:params].except('controller', 'action')
       { params: params } unless params.empty?
     end
+
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end

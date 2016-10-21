@@ -1,0 +1,52 @@
+<h1>Images Upload Demo</h1>
+
+<%= form_for Image.new, url: images_path(format: :js), method: :post, remote: true, html: { multipart: :true, class: 'form' }, data: { behavior: 'image-upload-form' } do |f| %>
+  <div class="form-group">
+    <a href="#" class="dropzone"><i class="fa fa-upload" aria-hidden="true"></i> Drop and image file here, or click to browse</a>
+    <%= f.file_field :image, style: 'display: none;' %>
+  </div>
+<% end %>
+
+<div class="images-container">
+  <% @images.each do |image| %>
+    <p><%= image_tag image.image_url(:medium) %></p>
+  <% end %>
+</div>
+
+<script>
+  "use strict";
+
+  document.addEventListener("turbolinks:load", function() {
+    console.log("turbolinks:load");
+
+    $("[data-behavior=image-upload-form] .dropzone").click(function(e) {
+      console.log("click");
+      $("[data-behavior=image-upload-form] input[type=file]").click();
+      e.preventDefault();
+    });
+
+    $("[data-behavior=image-upload-form]").fileupload({
+      dropZone: $("[data-behavior=image-upload-form] .dropzone"),
+      add: function (e, data) {
+        console.log("add");
+        // Automatically upload the file once it is added to the queue
+        var jqXHR = data.submit();
+      },
+      progress: function(e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        console.log("progress: " + progress);
+        if (progress == 100) {
+          console.log("done");
+        }
+      },
+      fail:function(e, data){
+        console.log("error");
+        console.log(data);
+      }
+    });
+
+    // Prevent the default action when a file is dropped on the window
+    $(document).on("drop dragover", function (e) { e.preventDefault(); });
+  });
+</script>
+

@@ -16,4 +16,5 @@
 //= require bootstrap.min
 //= require jquery-ui/core
 //= require jquery-ui/effect-highlight
+//= require jquery-fileupload/basic
 //= require_tree .
