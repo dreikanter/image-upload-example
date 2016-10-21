@@ -1,0 +1,15 @@
+//= require jquery-ui/core
+//= require font-awesome
+
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+html,
+body,
+.container {
+  height: 95%;
+}
+
+.nowrap {
+  white-space: nowrap;
+}

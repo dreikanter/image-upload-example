@@ -19,3 +19,14 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ansible
+*.retry
+*.pyc
+
+# Vagrant
+.vagrant
+
+# Dotenv
+.env
+
